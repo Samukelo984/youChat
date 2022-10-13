@@ -1,0 +1,26 @@
+.chatbox {
+  flex: 2;
+}
+
+.chatnav-info {
+  height: 3.2rem;
+  padding: 0.6em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--bright-gray);
+  background-color: var(--purple);
+}
+
+.chatnav-info h4 {
+  font-weight: 500;
+}
+
+.chatnav-icons {
+  gap: 0.6rem;
+  display: flex;
+}
+.chatnav-icons img {
+  height: 1.4rem;
+  cursor: pointer;
+}
