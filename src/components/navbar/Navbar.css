@@ -1,0 +1,42 @@
+.navbar {
+  height: 3.2rem;
+  padding: 0.7em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--bright-gray);
+  background-color: var(--night-purple);
+}
+
+.navbar h4 {
+  font-weight: 700;
+}
+
+.nav-user-info {
+  gap: 0.6rem;
+  display: flex;
+}
+
+.nav-user-info img {
+  width: 1.4rem;
+  height: 1.4rem;
+  object-fit: cover;
+  border-radius: 50%;
+  background-color: var(--bright-gray);
+}
+
+.nav-user-info span {
+  font-weight: 500;
+}
+.nav-user-info button {
+  padding: 0.4em;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border: none;
+  color: var(--bright-gray);
+  background-color: var(--purple);
+  border-radius: 0.2rem;
+}
+.nav-user-info button:hover {
+  transform: scale(0.92);
+}

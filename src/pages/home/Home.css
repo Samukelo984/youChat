@@ -1,0 +1,16 @@
+.home {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bright-purple);
+}
+
+.home-content {
+  width: 65%;
+  height: 80%;
+  display: flex;
+  overflow: hidden;
+  border: 1px solid var(--white);
+  border-radius: 0.6rem;
+}

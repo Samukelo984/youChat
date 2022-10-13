@@ -1,0 +1,17 @@
+.search {
+}
+
+.search-form {
+  padding: 0.6em;
+  border-bottom: 1px solid var(--bright-gray);
+}
+
+.search-form input {
+  outline: none;
+  border: none;
+  color: var(--white);
+  background-color: transparent;
+}
+::placeholder {
+  color: var(--white);
+}
