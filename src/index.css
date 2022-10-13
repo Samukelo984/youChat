@@ -10,7 +10,89 @@
   --white: #fff;
   --bright-gray: #ddddf7;
   --bright-purple: #a7bcff;
+  --light-purple: #8da4f1;
   --mid-purple: #7b96ec;
   --purple: #5d5b8d;
   --dark-purple: #2f2d52;
+}
+
+/* APP FORMS */
+.form-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bright-purple);
+}
+
+.form-wrapper {
+  padding: 1.2em 3.7em;
+  gap: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 0.6rem;
+}
+
+.form-wrapper h2 {
+  color: var(--purple);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+.form-wrapper span {
+  color: var(--purple);
+  font-size: 0.9rem;
+}
+
+.form {
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form input {
+  width: 15rem;
+  padding: 1em;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid var(--bright-purple);
+}
+
+.form label {
+  gap: 0.6em;
+  display: flex;
+  align-items: center;
+  color: var(--light-purple);
+  font-size: 0.8em;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.form label img {
+  width: 2rem;
+  height: auto;
+}
+
+.form button {
+  padding: 0.6em;
+  font-weight: 700;
+  border: none;
+  border-radius: 0.2rem;
+  color: var(--white);
+  background-color: var(--mid-purple);
+  cursor: pointer;
+}
+
+.form button:hover {
+  transform: scale(0.92);
+  color: var(--mid-purple);
+  background-color: var(--white);
+  border: 1px solid var(--mid-purple);
+}
+
+.form-wrapper p {
+  margin-top: 0.6em;
+  font-size: 0.9rem;
+  color: var(--purple);
 }
