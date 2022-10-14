@@ -36,6 +36,7 @@
   color: var(--bright-gray);
   background-color: var(--purple);
   border-radius: 0.2rem;
+  cursor: pointer;
 }
 .nav-user-info button:hover {
   transform: scale(0.92);
