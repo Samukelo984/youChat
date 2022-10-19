@@ -1,69 +1,50 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { doc, onSnapshot } from "firebase/firestore";
+import { db } from "../../firebase/Firebase";
+import { AuthContext } from "../../context/AuthContext";
+import { ChatContext } from "../../context/ChatContext";
 
 const Contact = () => {
+  const [chats, setChats] = useState([]);
+  const { currentUser } = useContext(AuthContext);
+  const { dispatch } = useContext(ChatContext);
+
+  useEffect(() => {
+    const getChats = () => {
+      const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
+        setChats(doc.data());
+      });
+
+      return () => {
+        unsub();
+      };
+    };
+
+    currentUser.uid && getChats();
+  }, [currentUser.uid]);
+
+  const handleSelect = (u) => {
+    dispatch({ type: "CHANGE_USER", payload: u });
+  };
+
   return (
-    <div>
-      <article className="contacts-messages">
-        <img
-          src="https://c4.wallpaperflare.com/wallpaper/782/246/421/mercedes-benz-c63-amg-wallpaper-preview.jpg"
-          alt="contact avatar"
-        />
-        <figure className="contact-info">
-          <figcaption>Jane</figcaption>
-          <p>Hello Jane!</p>
-        </figure>
-      </article>
-      <article className="contacts-messages">
-        <img
-          src="https://c4.wallpaperflare.com/wallpaper/782/246/421/mercedes-benz-c63-amg-wallpaper-preview.jpg"
-          alt="contact avatar"
-        />
-        <figure className="contact-info">
-          <figcaption>Jane</figcaption>
-          <p>Hello Jane!</p>
-        </figure>
-      </article>
-      <article className="contacts-messages">
-        <img
-          src="https://c4.wallpaperflare.com/wallpaper/782/246/421/mercedes-benz-c63-amg-wallpaper-preview.jpg"
-          alt="contact avatar"
-        />
-        <figure className="contact-info">
-          <figcaption>Jane</figcaption>
-          <p>Hello Jane!</p>
-        </figure>
-      </article>
-      <article className="contacts-messages">
-        <img
-          src="https://c4.wallpaperflare.com/wallpaper/782/246/421/mercedes-benz-c63-amg-wallpaper-preview.jpg"
-          alt="contact avatar"
-        />
-        <figure className="contact-info">
-          <figcaption>Jane</figcaption>
-          <p>Hello Jane!</p>
-        </figure>
-      </article>
-      <article className="contacts-messages">
-        <img
-          src="https://c4.wallpaperflare.com/wallpaper/782/246/421/mercedes-benz-c63-amg-wallpaper-preview.jpg"
-          alt="contact avatar"
-        />
-        <figure className="contact-info">
-          <figcaption>Jane</figcaption>
-          <p>Hello Jane!</p>
-        </figure>
-      </article>
-      <article className="contacts-messages">
-        <img
-          src="https://c4.wallpaperflare.com/wallpaper/782/246/421/mercedes-benz-c63-amg-wallpaper-preview.jpg"
-          alt="contact avatar"
-        />
-        <figure className="contact-info">
-          <figcaption>Jane</figcaption>
-          <p>Hello Jane!</p>
-        </figure>
-      </article>
-    </div>
+    <section>
+      {Object.entries(chats)
+        ?.sort((a, b) => b[1].date - a[1].date)
+        .map((chat) => (
+          <article
+            className="contacts-messages"
+            key={chat[0]}
+            onClick={handleSelect(chat[1].userInfo)}
+          >
+            <img src={chat[1].userInfo.photoURL} alt="contact avatar" />
+            <figure className="contact-info">
+              <figcaption>{chat[1].userInfo.username}</figcaption>
+              <p>{chat[1].lastMessage?.text}</p>
+            </figure>
+          </article>
+        ))}
+    </section>
   );
 };
 

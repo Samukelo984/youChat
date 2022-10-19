@@ -1,22 +1,36 @@
 import "./Message.css";
-import React from "react";
+import React, { useContext, useEffect, useRef } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { ChatContext } from "../../context/ChatContext";
 
-const Message = () => {
+const Message = ({ message }) => {
+  const { currentUser } = useContext(AuthContext);
+  const { data } = useContext(ChatContext);
+
+  const ref = useRef();
+
+  useEffect(() => {
+    ref.current?.scrollIntoView({ behavior: "smooth" });
+  }, [message]);
   return (
-    <article className="message">
+    <article
+      ref={ref}
+      className={`message ${message.senderId === currentUser.uid && "owner"}`}
+    >
       <figure className="message-info">
         <img
-          src="https://www.hdcarwallpapers.com/walls/mercedes_amg_c63_4k-HD.jpg"
+          src={
+            message.senderId === currentUser.uid
+              ? currentUser.photoURL
+              : data.user.photoURL
+          }
           alt="contact-avatar"
         />
         <figcaption>Just now</figcaption>
       </figure>
       <figure className="message-content">
-        <p>Hello Jane</p>
-        <img
-          src="https://wallpapercrafter.com/desktop/15381-mercedes-c63-amg-mercedes-car-white-front-view-4k.jpg"
-          alt="attached-avatar"
-        />
+        <p>{message.text}</p>
+        {message.img && <img src={message.img} alt="attached-avatar" />}
       </figure>
     </article>
   );
